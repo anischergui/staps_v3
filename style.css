@@ -1,0 +1,132 @@
+/* ===== Variables ===== */
+:root {
+  --papier: #f6f7f9;
+  --encre: #14283c;
+  --bleu: #1d4e89;
+  --ruban: #f4c430;
+  --gris: #5b6776;
+  --ligne: #d9dee5;
+  --blanc: #ffffff;
+  --titre: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --texte: "Barlow", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--texte);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--encre);
+  background: var(--papier);
+}
+
+a { color: var(--bleu); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--ruban); outline-offset: 3px; }
+
+/* ===== En-tête et navigation ===== */
+header {
+  background: var(--encre);
+  color: var(--blanc);
+  border-bottom: 6px solid var(--ruban);
+}
+.barre {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+.logo { font-family: var(--titre); font-size: 1.6rem; font-weight: 700; letter-spacing: .02em; }
+nav ul { list-style: none; display: flex; gap: .25rem; flex-wrap: wrap; }
+nav a {
+  display: block;
+  padding: .45rem .9rem;
+  color: var(--blanc);
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 500;
+}
+nav a:hover { background: rgba(255,255,255,.14); }
+nav a[aria-current="page"] { background: var(--ruban); color: var(--encre); font-weight: 600; }
+
+/* ===== Mise en page ===== */
+main { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+section { margin-top: 3rem; }
+
+h1, h2, h3 { font-family: var(--titre); line-height: 1.05; }
+h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); font-weight: 700; }
+h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--bleu); }
+h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: .35rem; }
+p + p { margin-top: 1rem; }
+.chapeau { font-size: 1.2rem; color: var(--gris); max-width: 62ch; margin-top: 1rem; }
+p, li { max-width: 68ch; }
+
+/* ===== Page d'accueil : le dossard ===== */
+.accueil { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 800px) { .accueil { grid-template-columns: 1.3fr 1fr; } }
+
+.dossard {
+  background: var(--blanc);
+  border: 3px solid var(--encre);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  transform: rotate(-2deg);
+  box-shadow: 8px 8px 0 var(--ruban);
+  position: relative;
+}
+.dossard::before, .dossard::after {
+  content: ""; position: absolute; top: 10px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--papier); border: 2px solid var(--encre);
+}
+.dossard::before { left: 10px; }
+.dossard::after { right: 10px; }
+.dossard .numero { font-family: var(--titre); font-size: 6rem; font-weight: 700; line-height: 1; text-align: center; color: var(--bleu); margin-top: .5rem; }
+.dossard dl { border-top: 2px dashed var(--ligne); padding-top: .75rem; }
+.dossard dt { font-size: .85rem; color: var(--gris); }
+.dossard dd { font-weight: 600; margin-bottom: .5rem; }
+
+/* ===== Cartes d'information ===== */
+.grille { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.bloc { background: var(--blanc); border: 1px solid var(--ligne); border-left: 6px solid var(--bleu); padding: 1.25rem; border-radius: 4px; }
+.bloc.jaune { border-left-color: var(--ruban); }
+
+.chiffres { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.chiffres div { background: var(--encre); color: var(--blanc); padding: .9rem 1.4rem; border-radius: 6px; }
+.chiffres strong { display: block; font-family: var(--titre); font-size: 2.2rem; color: var(--ruban); line-height: 1; }
+
+ul.liste { padding-left: 1.2rem; }
+ul.liste li { margin-bottom: .4rem; }
+
+/* ===== Programme : ligne de course ===== */
+.parcours { list-style: none; position: relative; margin-top: 1.5rem; padding-left: 0; }
+.parcours::before {
+  content: ""; position: absolute; left: 5.9rem; top: .5rem; bottom: .5rem;
+  width: 6px; background: repeating-linear-gradient(var(--bleu) 0 14px, var(--ruban) 14px 20px);
+  border-radius: 3px;
+}
+.parcours li { display: grid; grid-template-columns: 5rem 1fr; gap: 2rem; margin-bottom: 1.75rem; position: relative; max-width: none; }
+.parcours time { font-family: var(--titre); font-size: 1.7rem; font-weight: 700; text-align: right; color: var(--encre); }
+.parcours li::before {
+  content: ""; position: absolute; left: 5.45rem; top: .45rem;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--blanc); border: 4px solid var(--encre);
+}
+.parcours .depart::before { background: var(--ruban); }
+.parcours p { max-width: 55ch; }
+
+/* ===== Pied de page ===== */
+footer { background: var(--encre); color: #c9d2dc; text-align: center; padding: 1.5rem 1.25rem; font-size: .95rem; }
+
+/* ===== Mobile ===== */
+@media (max-width: 520px) {
+  .parcours::before { left: 4.4rem; }
+  .parcours li { grid-template-columns: 3.5rem 1fr; gap: 1.5rem; }
+  .parcours li::before { left: 3.95rem; }
+  .parcours time { font-size: 1.3rem; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
